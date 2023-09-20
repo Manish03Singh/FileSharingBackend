@@ -1,5 +1,7 @@
 import File from "../model/file.js"
+import dotenv from 'dotenv'
 
+dotenv.config()
 
 export const uploadFile = async (req, res) => {
     const fileObj = {
@@ -8,7 +10,7 @@ export const uploadFile = async (req, res) => {
     }
     try {
            const file = await File.create(fileObj);
-           res.status(200).json({path:`https://fsbackend-d4n3.onrender.com/${file._id}`})
+           res.status(200).json({path:`${process.env.API_URL}${file._id}`})
     } catch(error) {
         console.log(`Error in uploadFile. Error => ${error}`)
         res.status(500).json({error : error.message})
