@@ -10,7 +10,7 @@ export const uploadFile = async (req, res) => {
     }
     try {
            const file = await File.create(fileObj);
-           res.status(200).json({path:`${process.env.API_URL}${file._id}`})
+           res.status(200).json({path:`${process.env.API_URL}/file/${file._id}`})
     } catch(error) {
         console.log(`Error in uploadFile. Error => ${error}`)
         res.status(500).json({error : error.message})
